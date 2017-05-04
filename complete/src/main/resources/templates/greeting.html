@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    	<p>Id: <input type="text" th:field="${id}" /></p>
+        <p>Message: <input type="text" th:field="*{content}" /></p>
+        <!--<label th:text="*{optionOneName}" >Bus</label>-->
+        <!--<input type="radio" name="radiobutton"  th:value="*{bus}"  th:checked="*{bus}"/>-->
+        <!--<label th:text="*{optionTwoName}" >Train</label>-->
+        <!--<input type="radio"  name="radiobutton" th:value="*{train}"   th:checked="*{train}" />-->
+        <ul>
+            <li th:each="ty,iterationStatus : *{choices}">
+                <input type="text" th:field="${ty[__${iterationStatus.index}__].name}" />
+                <label >text: </label>
+            </li>
+        </ul>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
